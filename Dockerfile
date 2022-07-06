@@ -20,6 +20,9 @@ RUN apt-get update \
     python3-dev \
     python3-numpy \
     swig \
+    python3-rdkit \
+    librdkit1 \
+    rdkit-data \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
