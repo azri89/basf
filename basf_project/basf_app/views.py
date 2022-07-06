@@ -17,7 +17,7 @@ def generic_endpoint(request):
     """
     Generic endpoint to check if the service is running.
     """
-    return Response({'status': 'Service is running'})
+    return Response()
 
 @api_view(['POST'])
 def retrieve_add_molecule_data(request):
@@ -94,7 +94,7 @@ def retrieve_molecule_data(request):
 
         return Response(response)
 
-    except Exception as e:
+    except Exception:
         response = {'status': 'Fail to retrieve molecule data from the database.'}
         return Response(response)
 
@@ -202,8 +202,7 @@ def substructure_smiles_tpsa_hits(request):
                     'Top 5 TPSA': top_molecule_data}
         return Response(response)
 
-    except Exception as ex:
-        print(ex)
-        response = {'status': 'Substructure SMILES search fail.'}
+    except Exception:
+        response = {'status': 'Substructure SMILES search and TPSA calculation fail.'}
 
-        return Response()
+        return Response(response)
