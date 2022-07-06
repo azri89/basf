@@ -12,24 +12,11 @@ services:
 
   api:
     build: .
-    command: python basf_project/manage.py runserver 0.0.0.0:8000
+    command: bash -c "python basf_project/manage.py migrate && python basf_project/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/basf
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    depends_on:
-      - db
-      - migration
-
-  migration:
-    build: .
-    command: python basf_project/manage.py migrate
-    volumes:
-      - .:/basf
     environment:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
